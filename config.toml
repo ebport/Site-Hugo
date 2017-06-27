@@ -1,0 +1,62 @@
+## Basic Configuration
+
+baseurl = "ebport.github.io"
+builddrafts = false
+canonifyurls = false
+languageCode = "en-US"
+
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
+
+author = "Eric Porter"
+title = "Eric Porter"
+
+theme = "hugo-goa"
+
+## Hugo Built-in Features
+# disqusShortname = "" # Comment out to disable Disqus.
+# googleAnalytics = "XYZ"
+enableRobotsTXT = true
+
+## Site Settings
+[params]
+author = "Eric Porter"
+intro = "Management Consultant - Data & Analytics"
+description = "Currently with Clarity Insights in Charlotte, NC"
+authorimage = "woodenrobot.jpg"
+dateformat = "Jan 2, 2006"
+
+## Site Meta Settings
+[params.meta]
+description = "Personal Site Eric Porter"
+keywords = ""
+
+## Social Accounts
+[params.social]
+github = "ebport"
+linkedin = "ericbporter"
+# email = "you@example.com"
+
+## Extras
+[params.extra]
+copyright = "© 2017. Eric Porter. [Some Rights Reserved](http://creativecommons.org/licenses/by/3.0/)."
+poweredby = true
+hightlightjs = true
+
+## Main Menu
+[[menu.main]]
+    name = "posts"
+    weight = 100
+    identifier = "posts"
+    url = "/posts/"
+# [[menu.main]]
+#     name = "about"
+#     identifier = "about"
+#     weight = 200
+#     url = "/about/"
+# [[menu.main]]
+#     name = "reading list"
+#     identifier = "reading list"
+#     weight = 300
+#     url = "/reading-list/"

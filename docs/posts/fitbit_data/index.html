@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="description" content="Personal Site Eric Porter">
+
+
+<base href="ebport.github.io">
+
+<title>Eric Porter</title>
+
+<meta name="generator" content="Hugo 0.22-DEV" />
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400|Roboto+Slab:400,700|Roboto:300,300i,400,400i,500,500i,700,700i">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="ebport.github.io/css/main.css">
+
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+<body lang="en-US">
+<div class="container">
+
+
+<header class="row text-left title">
+  <h1 class="title">Build a Fitbit Heart Rate Extract</h1>
+</header>
+<section id="category-pane" class="row meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-left meta">
+      PUBLISHED ON JUN 2, 2017 
+      
+      
+      — 
+      
+      
+      <a class="meta" href="/ebport.github.io/categories/tutorial">TUTORIAL</a>
+      
+      
+    </h6>
+  </div>
+  
+</section>
+<section id="content-pane" class="row">
+  <div class="col-md-12 text-justify content">
+    
+
+<p>A Fitbit collects an incredible amount of granular data on personal activity, heart rate, and sleep. However, currently most of the detailed data is locked up within the app. This tutorial shows a simple way to extract the heart rate data in an automated fashion.</p>
+
+<p>This code will generate &lsquo;personal data extracts&rsquo; according to simple specifications, without requiring any copy pasting or manual effort beyond the initial configuration.</p>
+
+<p>Many others have posted helpful tutorials on this topic. I&rsquo;ve included a list at the end of this post. The one thing that frustrated me was that most other examples required manual copying of credentials each time. By running a minimal local web server with python we can eliminate this step and fully automate the process.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>This sections contains info on setting up your personal Fitbit app.</p>
+
+<h3 id="create-a-fitbit-app">Create a Fitbit App</h3>
+
+<ul>
+<li>Go to the Fitbit <a href="https://dev.fitbit.com/apps/">developer site</a> and log in.</li>
+<li>Select register a new app.</li>
+<li>Fill in the fields. The important values are application type and callback url.</li>
+</ul>
+
+<p><img src="/img/FitbitRegister.png" alt="Register Application" /></p>
+
+<ul>
+<li>Once the app is registered, select it to view the details. We&rsquo;ll use these in a bit to configure our data extract.</li>
+</ul>
+
+<h3 id="python-setup">Python Setup</h3>
+
+<p>If you don&rsquo;t have Python installed, you&rsquo;ll need to install it. Any version &gt;3.5 will work.</p>
+
+<ul>
+<li>Download and install Python <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></li>
+<li>Check installation from the terminal.</li>
+</ul>
+
+<pre><code>python --version
+</code></pre>
+
+<ul>
+<li>Use pip to install the requests dependency from the terminal.</li>
+</ul>
+
+<pre><code>pip install requests
+</code></pre>
+
+<p>If you run into any issues, there are many Python/Pip tutorials out there. I recommend <a href="http://python-guide-pt-br.readthedocs.io/en/latest/starting/installation/">this one</a>.</p>
+
+<h3 id="github-code">Github Code</h3>
+
+<p>The code for this project is available on <a href="https://github.com/ebport/Fitbit-HR">Github</a>.</p>
+
+<p>If you already have git installed, clone the repository.</p>
+
+<pre><code>git clone https://github.com/ebport/Fitbit-HR
+</code></pre>
+
+<p>If you don&rsquo;t have git, you can download the zipped code from <a href="https://github.com/ebport/Fitbit-HR">Github</a>.</p>
+
+<h2 id="using-the-code">Using the code</h2>
+
+<p>Now we are ready to put the code to use.</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>First we need to go back to the <a href="https://dev.fitbit.com/apps">Fitbit Site</a> and get the configuration info for our app. Once you select your app you should your app details.</p>
+
+<p><img src="/img/FitbitAppDetails.png" alt="App Details" /></p>
+
+<p>Now we need to enter this info into the <code>keys.py</code> file. Note this file is named <code>keys_dummy.py</code>. You&rsquo;ll want to rename and edit. The <code>.gitignore</code> file will prevent the uploading of app keys to Github.</p>
+
+<pre><code>cp keys_dummy.py keys.py
+</code></pre>
+
+<p>Add your client_id and client_secret to <code>keys.py</code>.</p>
+
+<pre><code>client_id = &lt;insert your client_id&gt;
+client_secret = &lt;insert your client secret&gt;
+</code></pre>
+
+<h3 id="basic-usage">Basic Usage</h3>
+
+<p>Now we are ready to go.</p>
+
+<pre><code>python fitbit.py
+</code></pre>
+
+<p>Login when the authentication window opens in your browser. Then grant the app permission to access your data.
+<insert image></p>
+
+<p>Check the default output dir and you should see the files hr.json and hr.csv.</p>
+
+<pre><code>ls fitbit_data/
+head hr.csv
+</code></pre>
+
+<h3 id="customizing-data-output">Customizing Data Output</h3>
+
+<p>By default the <code>fitbit.py</code> script pulls all data for today at 1 min intervals. However, you can get data for any day in 1min or 1sec intervals by modifying the configuration arguments.</p>
+
+<p>Command line usage</p>
+
+<pre><code>python fitbit.py 2017-06-01 1min
+</code></pre>
+
+<p>Other possible modifications:</p>
+
+<ul>
+<li>Change output directories</li>
+<li>Add fields</li>
+<li>Add other extracts</li>
+</ul>
+
+<h3 id="additional-comments">Additional Comments</h3>
+
+<ul>
+<li>OAuth 2.0 was the key barrier to fully automating this.</li>
+<li>Python standard library <code>webrowser</code> and <code>http.server</code> modules were key.</li>
+<li>Configuration can be generalized in the future. The script already supports multiple extracts. Define a function to process each json file and create a new dict in the <code>fitbit_config.py</code> extract list.</li>
+<li>Refactoring would be beneficial, but for now this works to generate quick and dirty data extracts.</li>
+</ul>
+
+  </div>
+</section>
+<section id="tag-pane" class="row meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-right meta">
+      
+      
+      TAGS: 
+      
+      
+      <a class="meta" href="/ebport.github.io/tags/api">API</a>, 
+      
+      <a class="meta" href="/ebport.github.io/tags/fitbit">FITBIT</a>, 
+      
+      <a class="meta" href="/ebport.github.io/tags/python">PYTHON</a>
+      
+      
+    </h6>
+  </div>
+  
+</section>
+
+
+
+
+
+
+
+
+<section id="menu-pane" class="row menu text-center">
+  
+  
+  
+  
+  
+  <h4 class="text-center"><a class="menu-item" href="ebport.github.io">home</a></h4>
+</section>
+
+
+
+<footer class="row text-center footer">
+  <hr />
+  
+  <h6 class="text-center copyright">© 2017. Eric Porter. <a href="http://creativecommons.org/licenses/by/3.0/">Some Rights Reserved</a>.</h6>
+  
+  <h6 class="text-center powered">Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/shenoybr/hugo-goa">Goa</a>.</h6>
+  
+  
+</footer>
+
+</div>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
