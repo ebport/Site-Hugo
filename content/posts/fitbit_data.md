@@ -8,7 +8,6 @@ showcomments = true
 slug = ""
 tags = ["python", "fitbit", "api"]
 title = "Build a Fitbit Heart Rate Extract"
-description = "How to extract granular heart rate data from the Fitbit API"
 
 +++
 

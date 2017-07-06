@@ -22,8 +22,8 @@ enableRobotsTXT = true
 ## Site Settings
 [params]
 author = "Eric Porter"
-intro = "Management Consultant - Data & Analytics"
-description = "Currently with Clarity Insights in Charlotte, NC"
+intro = "Data Engineer & Management Consultant"
+description = "Currently work at Clarity Insights"
 authorimage = "woodenrobot.jpg"
 dateformat = "Jan 2, 2006"
 
@@ -58,5 +58,5 @@ hightlightjs = true
 # [[menu.main]]
 #     name = "reading list"
 #     identifier = "reading list"
-#     weight = 300
+#     weight = 200
 #     url = "/reading-list/"
