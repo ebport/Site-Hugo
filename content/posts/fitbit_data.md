@@ -1,5 +1,5 @@
 +++
-categories = ["tutorial"]
+categories = ["howto"]
 comments = false
 date = "2017-06-02"
 draft = false

@@ -78,6 +78,9 @@ div.content
 
     color: #777;
 }
+p {
+  padding-bottom: 8px;
+}
 .copyright
 {
     font-family: 'Roboto', sans-serif;
@@ -212,7 +215,7 @@ h6.meta
     color: #bbb;
 }
 section.meta {
-    margin-top: 
+    margin-top:
 }
 .powered
 {
