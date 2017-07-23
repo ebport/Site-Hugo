@@ -22,8 +22,8 @@ enableRobotsTXT = true
 ## Site Settings
 [params]
 author = "Eric Porter"
-intro = "Data Engineer & Management Consultant"
-description = "Currently work at Clarity Insights"
+intro = "Data & Analytics Consultant"
+description = "Current: Data Engineer @ Clarity Insights"
 authorimage = "woodenrobot.jpg"
 dateformat = "Jan 2, 2006"
 
@@ -46,15 +46,15 @@ hightlightjs = true
 
 ## Main Menu
 [[menu.main]]
-    name = "posts"
+    name = "Posts"
     weight = 100
     identifier = "posts"
     url = "/posts/"
-# [[menu.main]]
-#     name = "about"
-#     identifier = "about"
-#     weight = 200
-#     url = "/about/"
+[[menu.main]]
+    name = "Services"
+    identifier = "consulting-services"
+    weight = 50
+    url = "/consulting-services/"
 # [[menu.main]]
 #     name = "reading list"
 #     identifier = "reading list"
